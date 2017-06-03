@@ -32,22 +32,22 @@
         <div class="jumbotron">
             <!--<h4 ng-bind="app"></h4>-->
             <h3>{{app}}</h3>
-            {{contatos}}
-            <table class="table table-striped">
+            <table class="table table-striped" ng-show="contatos.length > 0">
                 <tr>
                     <th></th>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Operadora</th>
+                    <th></th>
                 </tr>
                 <tr ng-class="{'selecionado negrito': contato.selecionado}" ng-repeat="contato in contatos">
                     <td><input type="checkbox" ng-model="contato.selecionado" /> </td>
                     <td>{{contato.nome}}</td>
                     <td>{{contato.telefone}}</td>
                     <td>{{contato.operadora.nome}}</td>
+                    <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
                     <!-- <td ng-repeat="(key,value) in contato" 
                     {{value}}     vai funcionar da mesma forma-->
-{{contato}}
                 </tr>
             </table>
             <hr/>
@@ -59,7 +59,11 @@
                 <option value="">Select a operator</option>
             </select>
            <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone" >Adicionar Contato</button>
-           <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)">Apagar Contatos</button>
+           <!--<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-disabled="!isContatoSelecionado(contatos)" >Apagar Contatos</button>-->
+           <!--<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-show="isContatoSelecionado(contatos)" >Apagar Contatos</button>-->
+           <!--<button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-hide="!isContatoSelecionado(contatos)" >Apagar Contatos</button> -->
+           <button class="btn btn-danger btn-block" ng-click="apagarContatos(contatos)" ng-if="isContatoSelecionado(contatos)" >Apagar Contatos</button>
         </div>
+        <div ng-include="'footer.html'"></div>
     </body>
 </html>

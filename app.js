@@ -2,9 +2,9 @@ angular.module("phoneBook",[]);
 angular.module("phoneBook").controller("phoneBookCtrl", function($scope){
     $scope.app = "Phone Book";
     $scope.contatos = [
-        {nome: "João", telefone: "99998888"},
-        {nome: "Paulo", telefone: "99997777"},
-        {nome: "Naka", telefone: "99996666"},
+        {nome: "Joao", telefone: "99998888", cor: "blue"},
+        {nome: "Paulo", telefone: "99997777", cor: "yellow"},
+        {nome: "Naka", telefone: "99996666", cor: "red"},
     ];
     $scope.operadoras = [
         {nome: "Oi", codigo: 14, categoria: "Celular"},
@@ -22,6 +22,10 @@ angular.module("phoneBook").controller("phoneBookCtrl", function($scope){
             if(!contato.selecionado)
                 return contato;
         });
-        console.log(contatosSelecionados);
     }
+    $scope.isContatoSelecionado = function(contatos){
+        return contatos.some(function(contato){
+            return contato.selecionado;
+        });
+    };
 });
